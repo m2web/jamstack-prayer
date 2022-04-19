@@ -1,0 +1,20 @@
+{
+    "routes": [
+        {
+            "route": "/prayer*",
+            "allowedRoles": ["authenticated"]
+        }
+    ],
+    "responseOverrides": {
+        "401": {
+          "statusCode": 302,
+          "redirect": "/.auth/login/aad"
+        },
+        "403": {
+          "redirect": "/.auth/login/aad"
+        },
+        "404": {
+          "redirect": "/404.html"
+        }
+      }
+}

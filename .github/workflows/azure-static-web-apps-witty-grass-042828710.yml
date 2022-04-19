@@ -1,0 +1,56 @@
+name: jamstack-azure-static-web-app-ci-cd
+
+on:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+    types: [start-workflow]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+  schedule:
+    # Run every day at 4:00 AM. Use https://crontab.guru/ to set the correct time.
+    - cron: '0 9 * * *'
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'repository_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_GRASS_042828710 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "public" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
+        env:
+          # from https://docs.microsoft.com/en-us/azure/static-web-apps/publish-hugo#custom-hugo-version
+          HUGO_VERSION: "0.90.1"
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WITTY_GRASS_042828710 }}
+          action: "close"
+        env:
+          # from https://docs.microsoft.com/en-us/azure/static-web-apps/publish-hugo#custom-hugo-version
+          HUGO_VERSION: "0.90.1"
