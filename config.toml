@@ -1,7 +1,7 @@
 baseURL = 'https://witty-grass-042828710.1.azurestaticapps.net/'
 languageCode = 'en-us'
 title = "Today's Prayer Site"
-theme = "jane"
+theme = "hugo-theme-jane"
 
 [[menu.main]]
   name = "Contact Mark"
