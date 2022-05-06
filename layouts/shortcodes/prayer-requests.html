@@ -9,7 +9,7 @@
 
 {{ $weekDay := now.Weekday }}
 <div class="todaysRequests">
-    <h3>Today's Request</h3>
+    <h3>Today's Requests</h3>
         {{ if eq $weekDay.String "Sunday" }}
             {{ range first 3 (after 0 $.Site.Data.prayerrequests) }}
                 <strong>{{ .category  | safeHTML }}</strong>:<br>
