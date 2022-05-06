@@ -8,7 +8,7 @@
     <!-- if yes, display all memory verses up to and including current month -->
     {{ $thisMonthNumber := int (printf "%d" now.Month) }}
     <div class="memoryVerse">
-        <h3>Today's Memory Verses</h3>
+        <h3>This Year's Memory Verse Review</h3>
         {{ range first $thisMonthNumber (after 0 $.Site.Data.memoryverses) }}
         <strong>{{ .reference }}</strong> - {{ .text }}<br><br>
         {{ end }}
