@@ -3,13 +3,15 @@
 {{ $memoryVerseJSON := $.Site.Data.memoryverses }}
 {{ $thisMonthNumber := int (printf "%d" now.Month) }}
 <br>
-<!-- is today's date the in the last for days of the current month? -->
+<!-- is today's date the in the last four days of the current month? -->
 {{ if and (gt (int (strings.TrimPrefix "0" (dateFormat "02" (now.AddDate 0 0 4)))) 0) (lt (int (strings.TrimPrefix "0" (dateFormat "02" (now.AddDate 0 0 4)))) 4) }}
     <!-- if yes, display all memory verses up to and including current month -->
     <div class="memoryVerse">
         <h3>This Year's Memory Verse Review</h3>
-        {{ range first $thisMonthNumber (after 0 $.Site.Data.memoryverses) }}
-        <strong>{{ .reference }}</strong> - {{ .text }}<br><br>
+        {{ range $memoryVerseJSON }}
+            {{ if gt (add $thisMonthNumber 1) (int .month) }}
+                <strong>{{ .reference }}</strong> - {{ .text }}<br><br>
+            {{ end }}
         {{ end }}
     </div>
 {{ else }}
