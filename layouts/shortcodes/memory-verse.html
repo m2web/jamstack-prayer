@@ -4,8 +4,8 @@
 {{ $thisMonthNumber := int (printf "%d" now.Month) }}
 <br>
 
-<!-- is today's date the in the last four days of the current month? -->
-{{ if lt (now.AddDate 0 0 5).Day 4 }}
+<!-- is today's date is 1 to 4 days from the last day of the current month? -->
+{{ if lt (now.AddDate 0 0 5).Day 5 }}
     <!-- if yes, display all memory verses up to and including current month -->
     <div class="memoryVerse">
         <h3>This Year's Memory Verse Review</h3>
