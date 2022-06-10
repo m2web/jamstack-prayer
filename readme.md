@@ -4,15 +4,6 @@ Use this site daily to assist in your prayer time each day.
 
 ## Site Features
 
-* Daily Prayer Requests that offer a different set of prayer categories each day.
-* A timer to assist you to stay focused on your prayer.
-* A different country to pray for each day.
-* A different scipture passage to read and pray each day.
-* A daily Valley of Vision prayer link.
-* A different Psalm to read and pray each day.
-
-## Screenshots
-
 ### The site is mobile responsive and looks great on any device
 
 ![Site is mobile responsive](readmeImages/mobile-ready.png)
@@ -33,3 +24,14 @@ Use this site daily to assist in your prayer time each day.
 
 ![A different country to pray for each day](readmeImages/todays-country.png)
 
+### A new scripture passage is displayed each day
+
+![A new scripture passage is displayed each day](readmeImages/todays-verse.png)
+
+### A different Psalm to read and pray each day
+
+![A different Psalm to read and pray each day](readmeImages/todays-psalm.png)
+
+### A daily Valley of Vision prayer link
+
+![A daily Valley of Vision prayer link](readmeImages/link-to-daily-vov-prayer.png)
